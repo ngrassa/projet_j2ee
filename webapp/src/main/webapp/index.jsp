@@ -1,3 +1,3 @@
-<h1> Hello, Welcome to DevOps training  !!! Projet1 : deploiement manuelle 2</h1>
+<h1> Hello, Welcome to DevOps training  !!! Projet1 : deploiement manuelle 1</h1>
 
 
