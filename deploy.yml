@@ -3,8 +3,8 @@
   hosts: prod
   become: true
 
-tasks:
-- name: webapp.war
-  copy:
-    src: webapp/target/webapp.war
-    dest: /opt/tomcat/latest/webapps/
+  tasks:
+  - name: webapp.war
+    copy:
+      src: webapp/target/webapp.war
+      dest: /opt/tomcat/latest/webapps/
