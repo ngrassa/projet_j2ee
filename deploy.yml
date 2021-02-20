@@ -1,0 +1,10 @@
+---
+- name: Deploy_to_tomcat
+  hosts: prod
+  become: true
+
+tasks:
+- name: webapp.war
+  copy:
+    src: webapp/target/webapp.war
+    dest: /opt/tomcat/latest/webapps/
