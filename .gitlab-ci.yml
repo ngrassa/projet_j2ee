@@ -8,10 +8,10 @@ build_app:
   tags:
   - stand-shell
   script:
-  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven
+  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven:3.5-jdk-8-alpine
       mvn clean install
   - cp target/hello.war hello.war
-  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven
+  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven:3.5-jdk-8-alpine
       mvn clean
   artifacts:
     paths:
