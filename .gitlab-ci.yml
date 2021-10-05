@@ -1,5 +1,6 @@
 stages:
   - build
+  - deploy
 
 build_app:
   stage: build
@@ -12,3 +13,16 @@ build_app:
     paths:
     - webapp/target/webapp.war
     expire_in: 1 week
+
+deploy_stand:
+  stage: deploy
+  dependencies:
+  - build_app
+  tags:
+  - stand-shell
+  script:
+  - docker run -d --rm --name hello-tomcat-${CI_COMMIT_SHA:0:8} -P
+      -v ${PWD}/webapp.war:/usr/local/tomcat/webapps/webapp.war   
+      tomcat:9.0-jre8-alpine
+  - docker ps -f "name=hello-tomcat-${CI_COMMIT_SHA:0:8}" --format '{{.Ports}}'
+
