@@ -28,3 +28,16 @@ deploy_stand:
       tomcat:9.0-jre8-alpine
   - docker ps -f "name=hello-tomcat-${CI_COMMIT_SHA:0:8}" --format '{{.Ports}}'
 
+deploy_prod:
+  stage: deploy
+  when: manual
+  dependencies:
+  - build_app
+  tags:
+  - prod-shell
+  script:
+  - docker run -d --rm --name hello-tomcat-${CI_COMMIT_SHA:0:8} -P
+      -v ${PWD}/webapp.war:/usr/local/tomcat/webapps/webapp.war   
+      tomcat:9.0-jre8-alpine
+  - docker ps -f "name=hello-tomcat-${CI_COMMIT_SHA:0:8}" --format '{{.Ports}}'
+
