@@ -1,6 +1,5 @@
 stages:
   - build
-  - deploy
 
 build_app:
   stage: build
@@ -8,37 +7,4 @@ build_app:
   tags:
   - stand-shell
   script:
-  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven:3.5-jdk-8-alpine
-      mvn clean install
-  - cp target/hello.war hello.war
-  - docker run -i --rm --name hello-maven -v ${PWD}:/hello -w /hello maven:3.5-jdk-8-alpine
-      mvn clean
-  artifacts:
-    paths:
-    - hello.war
-    expire_in: 1 week
-
-deploy_stand:
-  stage: deploy
-  dependencies:
-  - build_app
-  tags:
-  - stand-shell
-  script:
-  - docker run -d --rm --name hello-tomcat-${CI_COMMIT_SHA:0:8} -P
-      -v ${PWD}/hello.war:/usr/local/tomcat/webapps/hello.war   
-      tomcat:9.0-jre8-alpine
-  - docker ps -f "name=hello-tomcat-${CI_COMMIT_SHA:0:8}" --format '{{.Ports}}'
-
-deploy_prod:
-  stage: deploy
-  when: manual
-  dependencies:
-  - build_app
-  tags:
-  - prod-shell
-  script:
-  - docker run -d --rm --name hello-tomcat-${CI_COMMIT_SHA:0:8} -P
-      -v ${PWD}/hello.war:/usr/local/tomcat/webapps/hello.war   
-      tomcat:9.0-jre8-alpine
-  - docker ps -f "name=hello-tomcat-${CI_COMMIT_SHA:0:8}" --format '{{.Ports}}'
+  - docker run -it --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
