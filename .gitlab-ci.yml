@@ -8,3 +8,7 @@ build_app:
   - stand-shell
   script:
   - docker run -i --rm --name my-maven-project -v "$(pwd)":/mymaven -w /mymaven maven:3.3-jdk-8 mvn clean install
+  artifacts:
+    paths:
+    - webapp/target/webapp.war
+    expire_in: 1 week
