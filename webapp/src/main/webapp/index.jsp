@@ -1,2 +1,2 @@
-<h1> Hello, Welcome to DevOps training  !!! by Bilel </h1>
+<h1> Hello, Welcome to DevOps training  !!! Projet Gitlab-CI/CD </h1>
 
