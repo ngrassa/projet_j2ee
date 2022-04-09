@@ -1,2 +1,2 @@
-<h1> Hello, Welcome to DevOps training  !!! Deploiement automatique chaque 2mn Jenkins test2</h1>
+<h1> Hello, Welcome to DevOps training  !!! Deploiement automatique Projet4: git-gitlab-jenkins-tomcat</h1>
 
