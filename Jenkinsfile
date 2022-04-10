@@ -4,6 +4,16 @@ node {
         git credentialsId: 'jenkins', url: 'git@gitlab.com:f4045/projet_j2ee.git'
 
     }
+    stage('SonarQube analysis') {
+        withSonarQubeEnv {
+            sh 'mvn clean package sonar:sonar'
+        }
+    }
+
+    stage('Quality Gate') {
+        waitForQualityGate abortPipeline: true
+
+    }
     stage('Build') {
         def mavenHome = tool name: "Maven", type: "maven"
         def mavenCMD = "${mavenHome}/bin/mvn"
