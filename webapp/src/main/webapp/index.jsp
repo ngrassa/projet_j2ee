@@ -1,2 +1,2 @@
-<h1> Hello, Welcome to DevOps training  !!! Deploiement automatique Jenkinsfile</h1>
+<h1> Hello, Welcome to DevOps training  !!! Deploiement Manuelle</h1>
 
