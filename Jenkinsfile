@@ -24,6 +24,6 @@ node {
     
     stage('deploy')
         deploy adapters: [tomcat8(credentialsId: 'tomcat', path: '', url: 'http://3.72.207.31:8080/')], contextPath: null, war: '**/*.war'
-    
+
 
 }
